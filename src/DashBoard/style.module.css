@@ -1,0 +1,274 @@
+/* ── VARIABLES ── */
+:root {
+  --red: #E01020;
+  --red-dark: #A80D18;
+  --red-glow: rgba(224, 16, 32, 0.35);
+  --black: #0A0A0A;
+  --black-card: #111111;
+  --black-inner: #1A1A1A;
+  --black-member: #222222;
+  --white: #FFFFFF;
+  --white-muted: rgba(255, 255, 255, 0.55);
+  --white-dim: rgba(255, 255, 255, 0.4);
+  --white-faint: rgba(255, 255, 255, 0.07);
+  --border: rgba(255, 255, 255, 0.07);
+  --radius-card: 12px;
+  --radius-inner: 9px;
+  --radius-sm: 5px;
+  --radius-btn: 50px;
+}
+
+/* ── PAGE WRAPPER ── */
+.page_wrapper {
+  width: 100%;
+  height: 100%;
+  background: var(--black);
+  overflow: hidden;
+  font-family: 'Segoe UI', 'SF Pro Display', sans-serif;
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 10px;
+  padding: 10px;
+}
+
+/* ── SHARED PANEL BASE ── */
+.panel_ranking,
+.panel_actions,
+.panel_stats {
+  background: var(--black-card);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* ── RIGHT COLUMN ── */
+.right_col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.panel_stats {
+  flex: 1;
+  min-height: 0;
+}
+
+/* ── PANEL TITLE ── */
+.panel_title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+  padding: 10px 14px 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.title_accent {
+  color: var(--red);
+}
+
+/* ── SCROLL AREA ── */
+.scroll_area {
+  overflow-y: auto;
+  flex: 1;
+  padding: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(224, 16, 32, 0.4) transparent;
+}
+
+.scroll_area::-webkit-scrollbar { width: 4px; }
+.scroll_area::-webkit-scrollbar-track { background: transparent; }
+.scroll_area::-webkit-scrollbar-thumb {
+  background: rgba(224, 16, 32, 0.4);
+  border-radius: 2px;
+}
+
+/* ── FADE EDGES ── */
+.fade_top {
+  position: absolute;
+  top: 32px; left: 0; right: 0;
+  height: 20px;
+  background: linear-gradient(to bottom, var(--black-card), transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.fade_bottom {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 20px;
+  background: linear-gradient(to top, var(--black-card), transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── CORNER ACCENTS ── */
+.corner_tl,
+.corner_br {
+  position: absolute;
+  width: 16px; height: 16px;
+  border-color: var(--red);
+  border-style: solid;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.corner_tl {
+  top: 8px; left: 8px;
+  border-width: 2px 0 0 2px;
+  border-radius: 2px;
+}
+
+.corner_br {
+  bottom: 8px; right: 8px;
+  border-width: 0 2px 2px 0;
+  border-radius: 2px;
+}
+
+/* ── RANK LIST ── */
+.rank_list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ── TEAM CARD ── */
+.team_card {
+  background: var(--black-inner);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-inner);
+  padding: 10px;
+  flex-shrink: 0;
+}
+
+.team_header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.rank_badge {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--white);
+  flex-shrink: 0;
+}
+
+.rank_gold   { background: #FFD700; color: #000; }
+.rank_silver { background: #C0C0C0; color: #000; }
+.rank_bronze { background: #CD7F32; color: #fff; }
+
+.team_name {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--white);
+  flex: 1;
+}
+
+.team_pts {
+  font-size: 10px;
+  color: var(--red);
+  font-weight: 700;
+}
+
+/* ── TEAM ACTIONS ── */
+.team_actions {
+  display: flex;
+  gap: 5px;
+}
+
+.btn_team {
+  flex: 1;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+  border-radius: var(--radius-sm);
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  padding: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.btn_team_edit:hover {
+  border-color: #ffb400;
+  color: #ffb400;
+  background: rgba(255, 180, 0, 0.07);
+}
+
+.btn_team_del:hover {
+  border-color: var(--red);
+  color: var(--red);
+  background: rgba(224, 16, 32, 0.07);
+}
+
+/* ── CREATE BUTTONS ── */
+.create_btns {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 12px;
+}
+
+.btn_create_primary,
+.btn_create_secondary {
+  width: 100%;
+  height: 40px;
+  border: none;
+  border-radius: var(--radius-btn);
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  font-family: inherit;
+}
+
+.btn_create_primary {
+  background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
+  color: var(--white);
+  box-shadow: 0 4px 14px rgba(224, 16, 32, 0.35);
+}
+
+.btn_create_primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(224, 16, 32, 0.5);
+}
+
+.btn_create_secondary {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.btn_create_secondary:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: var(--white);
+}
+
+/* ── GLOBAL RESET ── */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
